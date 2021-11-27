@@ -1,3 +1,21 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Bienvenido</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item routerLink="/" (click)="cerrarMenu()">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Principal</ion-label>
+        </ion-item>
+        <ion-button *ngIf="servicioMensaje.MiUsuario == null" expand="block" color="dark" disabled>Cerrar Sesión</ion-button>
+        <ion-button *ngIf="servicioMensaje.MiUsuario != null" (click)="cerrarSesion()" expand="block" color="dark" disabled="false">Cerrar Sesión</ion-button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

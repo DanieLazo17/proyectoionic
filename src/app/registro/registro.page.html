@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.correo" (keyup)="validarFormulario()" name="correo" id="txtCorreo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.nombre" (keyup)="validarFormulario()" (change)="validarNombre()" name="nombre" id="txtNombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="usuario.contrasena" (keyup)="validarFormulario()" name="contrasena" id="txtContrasena" placeholder="Mínimo 1 letra mayús., 1 minús. y 1 número" [disabled]="txtClave"></ion-input>
+      </ion-item>
+    </ion-list>
+    <section>
+      <ion-button expand="block" color="dark" (click)="registrar()" [disabled]="btnRegistrar">Registrar</ion-button>
+    </section>
+  </ion-grid>
+  <p class="ion-text-center">{{txtRespuesta}}</p>
+</ion-content>

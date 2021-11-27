@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="mensaje">
+  <ion-item>
+    <ion-icon name="person-circle" color="primary"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        {{servicioMensaje.MiUsuario.nombre}}
+        <span class="date">
+          <ion-note>{{mensaje.fecha}}</ion-note>
+        </span>
+      </h2>
+      <h3>A: 
+        <ion-note>
+          {{destino.nombre}}
+        </ion-note>
+      </h3>
+    </ion-label>
+  </ion-item>
+  
+  <div *ngIf="!btnEditar" class="ion-padding">
+    <p>
+      {{mensaje.contenido}}
+    </p>
+    <ion-icon (click)="presentAlertConfirm()" name="trash" color="dark"></ion-icon>
+    <ion-icon (click)="editar()" name="pencil" color="dark"></ion-icon>
+  </div>
+
+  <ion-grid *ngIf="btnEditar">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Mensaje</ion-label>
+        <ion-textarea rows="6" cols="20" [(ngModel)]="mensaje.contenido" name="contenido" id="contenido" (keyup)="validar()"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" color="dark" (click)="guardar()" [disabled]="btnGuardar">Guardar</ion-button>
+    <ion-button expand="block" color="dark" (click)="cancelar()">Cancelar</ion-button>
+  </ion-grid>
+</ion-content>

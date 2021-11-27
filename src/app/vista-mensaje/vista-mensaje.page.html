@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="mensaje">
+  <ion-item>
+    <ion-icon name="person-circle" color="primary"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        {{mensaje.usuario}}
+        <span class="date">
+          <ion-note>{{ mensaje.fecha }}</ion-note>
+        </span>
+      </h2>
+      <h3>A: 
+        <ion-note>
+        {{mensaje.destino}}
+        </ion-note>
+      </h3>
+    </ion-label>
+  </ion-item>
+  
+  <div class="ion-padding">
+    <p>
+      {{mensaje.contenido}}
+    </p>
+  </div>
+</ion-content>

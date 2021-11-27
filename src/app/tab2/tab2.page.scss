@@ -1,0 +1,12 @@
+.lista{
+    padding-top: 0px;
+}
+
+ion-content ion-grid ion-item label{
+    opacity: 0;
+}
+
+.fuente{
+    --placeholder-opacity: 1;
+    opacity: 0.4;
+}

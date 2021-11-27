@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Destinos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,25 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Destinos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-searchbar placeholder="Buscar" search-icon="search" [(ngModel)]="busqueda">
+  </ion-searchbar>
+  <!--
+  <ion-grid>
+    <ion-item>
+      <ion-select placeholder="Ordenar" id="numeroOrden" interface="popover" ngClass="fuente" (ionChange)="ordenarPor()">
+        <ion-select-option value="0">Normal</ion-select-option>
+        <ion-select-option *ngFor="let orden of ordenes" value={{orden.numero}}>{{orden.tipoOrden}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-grid>
+  -->
+  <ion-grid>
+    <ion-list ngClass="lista">
+      <app-destino *ngFor="let destino of destinos|buscarDestinos:busqueda" [destino]="destino"></app-destino>
+    </ion-list>
+  </ion-grid>
 </ion-content>

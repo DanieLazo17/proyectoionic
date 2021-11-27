@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperación de contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="text" [(ngModel)]="usuario.correo" (keyup)="validarCorreo()" name="correo" id="txtCorreo"></ion-input>
+      </ion-item>
+    </ion-list>
+    <section>
+      <ion-button expand="block" color="dark" (click)="enviar()" [disabled]="btnEnviar">Enviar correo</ion-button>
+    </section>
+  </ion-grid>
+  <p class="ion-text-center">{{respuestaDeRecuperacion}}</p>
+</ion-content>

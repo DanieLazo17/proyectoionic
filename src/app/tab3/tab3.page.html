@@ -1,17 +1,117 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title *ngIf="servicioMensaje.MiUsuario == null; else elseBlock">
+      Iniciar Sesión
     </ion-title>
+    <ng-template #elseBlock>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Mis destinos
+      </ion-title>
+    </ng-template>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title *ngIf="servicioMensaje.MiUsuario == null" size="large">Iniciar Sesión</ion-title>
+      <ion-title *ngIf="servicioMensaje.MiUsuario != null" size="large">Mis destinos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div *ngIf="servicioMensaje.MiUsuario == null" id="container">
+    <ion-grid>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario.nombre" (keyup)="validarFormulario()" name="nombre" id="txtNombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="usuario.contrasena" (keyup)="validarFormulario()" name="contrasena" id="txtContrasena"></ion-input>
+        </ion-item>
+      </ion-list>
+      <section>
+        <ion-button expand="block" color="dark" (click)="ingresar()" [disabled]="btnIngresar">Ingresar
+        </ion-button>
+      </section>
+    </ion-grid>
+    <strong></strong>
+    <ion-grid>
+      <a routerLink="/registro">Crear cuenta</a>
+    </ion-grid>
+    <!--
+    <ion-grid>
+      <a routerLink="/recuperar-clave">Recuperar contraseña</a>
+    </ion-grid>
+    -->
+    <p class="ion-text-center">{{respuestaDeRegistro}}</p>
+  </div>
+
+  <div *ngIf="servicioMensaje.MiUsuario != null">
+    <ion-grid *ngIf="btnAgregar">
+      <ion-button expand="block" color="dark" (click)="agregarViaje()">Agregar viaje</ion-button>
+    </ion-grid>
+
+    <ion-grid *ngIf="!btnAgregar">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" *ngIf="!dstVisitado" [(ngModel)]="miViaje.nombre" (change)="buscarDestino()" (keyup)="validarViaje()" name="nombre" id="txtNombre"></ion-input>
+          <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.nombre" name="nombre" id="txtNombre" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Tipo de Turismo</ion-label>
+          <ion-input type="text" *ngIf="!dstVisitado" [(ngModel)]="miViaje.tipoTurismo" (keyup)="validarViaje()" name="tipoTurismo" id="txtTipoTurismo"></ion-input>
+          <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.tipoTurismo" name="tipoTurismo" id="txtTipoTurismo" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">País</ion-label>
+          <ion-input type="text" *ngIf="!dstVisitado" [(ngModel)]="miViaje.pais" (keyup)="validarViaje()" name="pais" id="txtPais"></ion-input>
+          <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.pais" name="pais" id="txtPais" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Provincia</ion-label>
+          <ion-input type="text" *ngIf="!dstVisitado" [(ngModel)]="miViaje.provincia" (keyup)="validarViaje()" name="provincia" id="txtProvincia"></ion-input>
+          <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.provincia" name="provincia" id="txtProvincia" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Fecha de viaje</ion-label>
+          <ion-datetime 
+            [(ngModel)]="miFecha" 
+            display-format="YYYY-MM-DD" 
+            [max]="fechaDeHoy" 
+            name="miFecha" 
+            id="dtMiFecha" 
+            (ionChange)="mostrarFecha()" 
+            cancel-text="Cancelar" 
+            done-text="Aceptar">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Mensaje</ion-label>
+          <ion-textarea rows="4" cols="20" *ngIf="!dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarViaje()"></ion-textarea>
+          <ion-textarea rows="4" cols="20" *ngIf="dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarMensaje()"></ion-textarea>
+        </ion-item>
+      </ion-list>
+      <ion-button *ngIf="!dstVisitado" expand="block" color="dark" (click)="guardarMiViaje()" [disabled]="btnGuardar">Guardar</ion-button>
+      <ion-button *ngIf="dstVisitado" expand="block" color="dark" (click)="guardarMensaje()" [disabled]="btnGuardarMensaje">Guardar mensaje</ion-button>
+      <ion-button expand="block" color="dark" (click)="cancelar()">Cancelar</ion-button>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-list>
+        <app-mi-mensaje *ngFor="let mensaje of mensajes" [mensaje]="mensaje"></app-mi-mensaje>
+      </ion-list>
+    </ion-grid>
+  </div>
 </ion-content>
+
+<!--
+<ion-footer *ngIf="servicioMensaje.MiUsuario != null">
+  <ion-button expand="block" color="dark">Cerrar Sesión</ion-button>
+</ion-footer>
+-->
