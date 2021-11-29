@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Destino } from '../clases/destino';
+import { ApiService } from '../servicios/api.service';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  destinos!:Array<Destino>;
 
-  constructor() {}
+  constructor(private api: ApiService) {
+    this.api.traerDestinosOrdenados().subscribe(respuesta =>{
+      this.mostrarDestinos(respuesta);
+    })
+  }
 
+  mostrarDestinos(respuesta: Object):void{
+    this.destinos = <Array<Destino>>respuesta;
+  }
 }

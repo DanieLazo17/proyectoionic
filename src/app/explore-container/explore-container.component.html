@@ -1,4 +1,10 @@
-<div id="container">
-  <strong>{{ name }}</strong>
-  <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-</div>
+<ion-card (click)="traerMensajes()">
+  <img src="{{destino.imagen}}" />
+  <ion-card-header>
+    <ion-card-subtitle>{{destino.provincia}}</ion-card-subtitle>
+    <ion-card-title>{{destino.nombre}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    {{destino.pais}}
+  </ion-card-content>
+</ion-card>

@@ -72,6 +72,6 @@ export class RegistroPage implements OnInit {
   respuestaDeRegistro(respuesta: Object):void{
     this.usuario = new Usuario();
     this.usuarioRegistrado = <Usuario>respuesta;
-    this.txtRespuesta = "Usuario " + this.usuario.nombre + " generado correctamente";
+    this.txtRespuesta = "Usuario " + this.usuarioRegistrado.nombre + " generado correctamente";
   }
 }

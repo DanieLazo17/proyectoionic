@@ -2,7 +2,8 @@
   <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Bienvenido</ion-title>
+        <ion-title *ngIf="servicioMensaje.MiUsuario == null">Bienvenido</ion-title>
+        <ion-title *ngIf="servicioMensaje.MiUsuario != null">Cuenta de {{servicioMensaje.MiUsuario.nombre}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>

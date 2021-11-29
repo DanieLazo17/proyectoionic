@@ -20,11 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'contenido-protegido',
-    loadChildren: () => import('./contenido-protegido/contenido-protegido.module').then( m => m.ContenidoProtegidoPageModule),
-    canActivate:[PermisoGuard]
-  },
-  {
     path: 'vista-mi-mensaje',
     loadChildren: () => import('./vista-mi-mensaje/vista-mi-mensaje.module').then( m => m.VistaMiMensajePageModule)
   },
