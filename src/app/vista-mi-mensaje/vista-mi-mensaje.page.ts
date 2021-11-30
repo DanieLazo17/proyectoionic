@@ -78,7 +78,7 @@ export class VistaMiMensajePage implements OnInit {
         }, {
           text: 'Si',
           handler: () => {
-            //this.borrar();
+            this.borrar();
           }
         }
       ]

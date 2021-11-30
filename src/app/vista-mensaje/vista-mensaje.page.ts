@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Mensaje } from '../clases/mensaje';
 import { MensajeService } from '../servicios/mensaje.service';
+import { Clipboard } from '@capacitor/clipboard';
 
 @Component({
   selector: 'app-vista-mensaje',
@@ -23,4 +24,16 @@ export class VistaMensajePage implements OnInit {
     const mode = win && win.Ionic && win.Ionic.mode;
     return mode === 'ios' ? 'Inbox' : '';
   }
+
+  writeToClipboard = async () => {
+    await Clipboard.write({
+      string: this.mensaje.contenido
+    });
+  };
+  
+  checkClipboard = async () => {
+    const { type, value } = await Clipboard.read();
+  
+    alert(`Got ${type} from clipboard: ${value}`);
+  };
 }

@@ -57,9 +57,9 @@
     </ion-grid>
 
     <ion-grid *ngIf="!btnAgregar">
-      <ion-list>
+      <ion-list ngClass="formViaje">
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
+          <ion-label position="floating">Nombre del Destino</ion-label>
           <ion-input type="text" *ngIf="!dstVisitado" [(ngModel)]="miViaje.nombre" (change)="buscarDestino()" (keyup)="validarViaje()" name="nombre" id="txtNombre"></ion-input>
           <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.nombre" name="nombre" id="txtNombre" disabled></ion-input>
         </ion-item>
@@ -79,7 +79,7 @@
           <ion-input type="text" *ngIf="dstVisitado" [(ngModel)]="destino.provincia" name="provincia" id="txtProvincia" disabled></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Fecha de viaje</ion-label>
+          <ion-label position="floating">Fecha</ion-label>
           <ion-datetime 
             [(ngModel)]="miFecha" 
             display-format="YYYY-MM-DD" 
@@ -93,9 +93,11 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Mensaje</ion-label>
-          <ion-textarea rows="4" cols="20" *ngIf="!dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarViaje()"></ion-textarea>
-          <ion-textarea rows="4" cols="20" *ngIf="dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarMensaje()"></ion-textarea>
+          <ion-textarea rows="3" cols="20" *ngIf="!dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarViaje()"></ion-textarea>
+          <ion-textarea rows="3" cols="20" *ngIf="dstVisitado" [(ngModel)]="miMensaje" name="contenido" id="txtContenido" (keyup)="validarMensaje()"></ion-textarea>
         </ion-item>
+        <ion-icon ngClass="foto" name="camera" (click)="takePicture()"></ion-icon>
+        <ion-img [src]="imagenUrl"></ion-img>
       </ion-list>
       <ion-button *ngIf="!dstVisitado" expand="block" color="dark" (click)="guardarMiViaje()" [disabled]="btnGuardar">Guardar</ion-button>
       <ion-button *ngIf="dstVisitado" expand="block" color="dark" (click)="guardarMensaje()" [disabled]="btnGuardarMensaje">Guardar mensaje</ion-button>
