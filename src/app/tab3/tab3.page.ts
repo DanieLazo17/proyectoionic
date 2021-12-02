@@ -111,7 +111,6 @@ export class Tab3Page {
     this.miViaje = new Destino();
     this.destino = new Destino();
     this.miMensaje = '';
-    this.miFecha = '';
     this.imagenUrl = '';
   }
 
