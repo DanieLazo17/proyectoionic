@@ -85,11 +85,11 @@ export class Tab3Page {
       sessionStorage.setItem("usuario", this.usuario.nombre);
       this.servicioMensaje.MiUsuario = this.usuario;
       this.traerMensajesMiUsuario();
-      //this.ruteo.navigate(['/contenido-protegido']);
     }
   }
 
   traerMensajesMiUsuario(){
+    this.respuestaDeRegistro = "";
     this.api.traerMensajesDeUsuario(this.servicioMensaje.MiUsuario.idUsuario).subscribe( respuesta =>{
       this.mostrarMensajes(respuesta);
     })
@@ -163,7 +163,7 @@ export class Tab3Page {
     datos.append("destino", String(this.destino.idDestino));
     datos.append("usuario", String(this.servicioMensaje.MiUsuario.idUsuario));
     datos.append("contenido", this.miMensaje);
-    datos.append("fecha", this.miFecha);
+    datos.append("fecha", this.miFecha.substr(0,10));
     this.api.cargarNuevoMensaje(datos).subscribe( respuesta =>{
       this.respuestaGuardarMensaje(respuesta);
     })
@@ -181,7 +181,7 @@ export class Tab3Page {
     datos.append("destino", String(this.destino.idDestino));
     datos.append("usuario", String(this.servicioMensaje.MiUsuario.idUsuario));
     datos.append("contenido", this.miMensaje);
-    datos.append("fecha", this.miFecha);
+    datos.append("fecha", this.miFecha.substr(0,10));
     this.api.cargarNuevoMensaje(datos).subscribe( respuesta =>{
       this.respuestaGuardarMensaje(respuesta);
     })

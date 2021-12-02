@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Destino } from '../clases/destino';
 import { Mensaje } from '../clases/mensaje';
@@ -16,7 +17,7 @@ export class VistaMiMensajePage implements OnInit {
   btnGuardar:boolean;
   btnEditar:boolean;
 
-  constructor(private servicioMensaje: MensajeService, private api: ApiService, public alertaControlador: AlertController) {
+  constructor(private servicioMensaje: MensajeService, private api: ApiService, public alertaControlador: AlertController, private ruteo: Router) {
     this.mensaje = this.servicioMensaje.Mensaje;
     this.destino = this.servicioMensaje.Destino;
     this.btnGuardar = true;
@@ -97,11 +98,12 @@ export class VistaMiMensajePage implements OnInit {
     const alert = await this.alertaControlador.create({
       cssClass: 'my-custom-class',
       header: 'Confirmación',
-      message: 'Su destino fue borrado.',
+      message: respuesta['mensaje'],
       buttons: ['Aceptar']
     });
 
     await alert.present();
+    this.ruteo.navigate(['/tabs/tab3']);
 
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);

@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   borrarMensaje(idMensaje: number){
-    return this.clienteHttp.delete(this.api + 'Mensaje/Borrar/' + idMensaje);
+    return this.clienteHttp.get(this.api + 'Mensaje/Borrar/' + idMensaje);
   }
 
   editarMensaje(idMensaje: number, datos: FormData){
