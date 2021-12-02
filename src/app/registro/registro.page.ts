@@ -30,10 +30,10 @@ export class RegistroPage implements OnInit {
   }
 
   validarFormulario(): void {
-    var patt = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/);
-    var testCorreo = patt.test(this.usuario.correo);
-    var patt = new RegExp(/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{4,}$/);
-    var testPass = patt.test(this.usuario.contrasena);
+    var pattCorreo = new RegExp(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/);
+    var testCorreo = pattCorreo.test(this.usuario.correo);
+    var pattPass = new RegExp(/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{4,}$/);
+    var testPass = pattPass.test(this.usuario.contrasena);
     if (this.usuario.nombre.length >= 2 && testCorreo && testPass) {
       this.btnRegistrar = false;
     } else {

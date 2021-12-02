@@ -46,6 +46,7 @@ export class Tab3Page {
     this.btnGuardarMensaje = true;
     let d = new Date();//Ver horario local
     this.fechaDeHoy = (d.toISOString()).substr(0,10);
+    this.miFecha = (d.toISOString()).substr(0,10);
   }
 
   ngOnInit() {

@@ -63,6 +63,10 @@ export class ApiService {
     return this.clienteHttp.get(this.api + 'Destino/Orden');
   }
 
+  TraerDestinosPopulares(){
+    return this.clienteHttp.get(this.api + 'Destino/Popular');
+  }
+
   recuperarClave(datos: FormData){
     return this.clienteHttp.post(this.api + 'Usuario/Recuperacion', datos);
   }

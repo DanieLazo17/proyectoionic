@@ -11,7 +11,7 @@ export class Tab1Page {
   destinos!:Array<Destino>;
 
   constructor(private api: ApiService) {
-    this.api.traerDestinosOrdenados().subscribe(respuesta =>{
+    this.api.TraerDestinosPopulares().subscribe(respuesta =>{
       this.mostrarDestinos(respuesta);
     })
   }
