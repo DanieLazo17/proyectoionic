@@ -9,5 +9,5 @@
 
 ## Desarrollo
 
-* Se desarrollo la aplicación en Ionic para acceder a la página desde celulares Android
+* Se desarrollo la aplicación en Ionic para acceder a la página [Destinos](https://github.com/DanieLazo17/testAngular) desde celulares Android
 * La app no está publicada en Play Store. Puede generar el archivo .apk desde Android Studio
